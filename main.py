@@ -126,6 +126,8 @@ from collect_data import *
 from testing import *
 
 #%%
+from backtesting import Backtest
+
 # optimize test
 def opt_test(
     stock,
@@ -158,7 +160,7 @@ def opt_test(
     # change n1 and n2
     SmaCross.n1 = ma1
     SmaCross.n2 = ma2
-    print("SMA:", SmaCross.n1, SmaCross.n2)
+    # print("SMA:", SmaCross.n1, SmaCross.n2)
     test = Backtest(df, SmaCross, cash=cash, commission=commission)
     # %%
     result = test.run()
@@ -225,11 +227,17 @@ def draw_graph(stock, start, end):
 
 #%%
 # button get
+
+
 def get():
     # get text
     target_input = (target_text.get("1.0", "end-1c")).replace("\n", "").replace(" ", "")
-    ma1_input = int((ma1_text.get("1.0", "end-1c")).replace("\n", "").replace(" ", ""))
-    ma2_input = int((ma2_text.get("1.0", "end-1c")).replace("\n", "").replace(" ", ""))
+    ma1_input = int(
+        float((ma1_text.get("1.0", "end-1c")).replace("\n", "").replace(" ", ""))
+    )
+    ma2_input = int(
+        float((ma2_text.get("1.0", "end-1c")).replace("\n", "").replace(" ", ""))
+    )
     start_list = [start_y_box.get(), start_m_box.get(), start_d_box.get()]
     end_list = [end_y_box.get(), end_m_box.get(), end_d_box.get()]
     maximum_input = maximum_box.get()
